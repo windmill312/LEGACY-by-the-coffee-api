@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.common.grpc.model";
+
+message Empty {}
+
+message GUuid {
+    string uuid = 1;
+}
+
+message GPageable {
+    int32 page = 1;
+    int32 size = 2;
+}
+
+message GPage {
+    int32 number = 1;
+    int32 size = 2;
+    int64 totalElements = 3;
+}
