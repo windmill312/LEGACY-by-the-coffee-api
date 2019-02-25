@@ -11,7 +11,11 @@ public interface CoffeeHouseService {
 
     Page<CafeEntity> getAllCafes(Pageable pageable);
 
-    Page<ProductEntity> getProductsByCafe(CafeEntity cafe, Pageable pageable);
+    Page<ProductEntity> getAllProducts(Pageable pageable);
+
+    Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable);
+
+    ProductEntity getProductByUid(UUID productUid);
 
     UUID addCafe(CafeEntity entity);
 
@@ -19,8 +23,6 @@ public interface CoffeeHouseService {
 
     void removeCafe(UUID cafeUid);
 
-    void removeProduct(UUID productUid);
-
-    ProductEntity getProductByUid(UUID productUid);
+    void removeProduct(UUID productUid, UUID cafeUid);
 
 }

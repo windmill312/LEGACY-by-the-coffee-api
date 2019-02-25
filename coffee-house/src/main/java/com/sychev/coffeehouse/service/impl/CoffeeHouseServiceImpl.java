@@ -1,5 +1,6 @@
 package com.sychev.coffeehouse.service.impl;
 
+import com.sychev.coffeehouse.exception.NotFoundCafeException;
 import com.sychev.coffeehouse.exception.NotFoundProductException;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
 import com.sychev.coffeehouse.model.entity.ProductEntity;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -36,7 +38,16 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     }
 
     @Override
-    public Page<ProductEntity> getProductsByCafe(CafeEntity cafe, Pageable pageable) {
+    public Page<ProductEntity> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable) {
+        CafeEntity cafe = cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+            logger.info("Not found cafe with uid={}", cafeUid);
+            return new NotFoundProductException("Not found cafe with uid=" + cafeUid);
+        });
         return productRepository.findByCafe(cafe, pageable);
     }
 
@@ -69,7 +80,18 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
 
     @Override
     @Transactional
-    public void removeProduct(UUID productUid) {
-        productRepository.deleteByUidProduct(productUid);
+    public void removeProduct(UUID productUid, UUID cafeUid) {
+        CafeEntity cafe = cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+            logger.info("Not found cafe with uid={}", cafeUid);
+            return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
+        });
+        ProductEntity product = productRepository.findByUidProduct(productUid).orElseThrow(() -> {
+            logger.info("Not found product with uid={}", productUid);
+            return new NotFoundProductException("Not found product with uid=" + productUid);
+        });
+        Set<ProductEntity> products = cafe.getProducts();
+        products.remove(product);
+        cafe.setProducts(products);
+        cafeRepository.save(cafe);
     }
 }

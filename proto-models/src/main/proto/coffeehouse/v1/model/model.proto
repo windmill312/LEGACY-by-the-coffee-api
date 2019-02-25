@@ -1,23 +1,26 @@
 syntax = "proto3";
 
-//import "common/model/model.proto";
+import "common/model/model.proto";
 
 option java_multiple_files = true;
 option java_package = "com.sychev.coffeehouse.grpc.model.v1";
 
-/*message GInterviewQuestionInfo {
-    GUuid questionUid = 1;
-    string questionName = 2;
-    string questionText = 3;
-    string questionAnswer = 4;
-    string category = 5;
-}*/
-
-message Point {
-     int32 latitude = 1;
-     int32 longitude = 2;
+message GCafeInfo {
+    GUuid cafeUid = 1;
+    GPair location = 2;
+    string cafeName = 3;
+    repeated GProductInfo products = 4;
 }
 
-message Feature {
-    int32 latitude = 1;
+message GPair {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message GProductInfo {
+    GUuid uidProduct = 1;
+    string productName = 2;
+    string productDescription = 3;
+    int32 productPrice = 4;
+    GCafeInfo cafe = 5;
 }

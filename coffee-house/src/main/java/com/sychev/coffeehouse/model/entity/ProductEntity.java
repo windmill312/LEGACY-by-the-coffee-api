@@ -19,6 +19,8 @@ public class ProductEntity {
     private Integer price;
     private CafeEntity cafe;
 
+    public ProductEntity() {}
+
     public Integer getId() {
         return id;
     }
