@@ -18,6 +18,7 @@ public class CafeEntity {
     private Double longitude;
     private String name;
     private String description;
+    private UUID ownerUid;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -37,8 +38,9 @@ public class CafeEntity {
         return uidCafe;
     }
 
-    public void setUidCafe(UUID uidCafe) {
+    public CafeEntity setUidCafe(UUID uidCafe) {
         this.uidCafe = uidCafe;
+        return this;
     }
 
     @Basic
@@ -47,8 +49,9 @@ public class CafeEntity {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public CafeEntity setLatitude(Double latitude) {
         this.latitude = latitude;
+        return this;
     }
 
     @Basic
@@ -57,8 +60,9 @@ public class CafeEntity {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public CafeEntity setLongitude(Double longitude) {
         this.longitude = longitude;
+        return this;
     }
 
     @Basic
@@ -67,8 +71,9 @@ public class CafeEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public CafeEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Basic
@@ -77,8 +82,21 @@ public class CafeEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    public CafeEntity setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    @Basic
+    @Type(type = "pg-uuid")
+    @Column(name = "owner_uid")
+    public UUID getOwnerUid() {
+        return ownerUid;
+    }
+
+    public CafeEntity setOwnerUid(UUID ownerUid) {
+        this.ownerUid = ownerUid;
+        return this;
     }
 
     public CafeEntity copy (CafeEntity entity) {

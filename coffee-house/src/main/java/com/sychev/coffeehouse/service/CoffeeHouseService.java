@@ -8,23 +8,23 @@ import java.util.UUID;
 
 public interface CoffeeHouseService {
 
-    Page<CafeEntity> getAllCafes(Pageable pageable);
+    Page<CafeEntity> getAllCafesAroundClient(Pageable pageable, Double latitude, Double longitude);
 
     CafeEntity getCafeByUid(UUID cafeUid);
+
+    UUID addCafe(CafeEntity entity);
+
+    void updateCafe(CafeEntity entity);
+
+    void removeCafe(UUID cafeUid);
+
+    //UUID addProduct(ProductEntity entity);
 
     //Page<ProductEntity> getAllProducts(Pageable pageable);
 
     //Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable);
 
     //ProductEntity getProductByUid(UUID productUid);
-
-    UUID addCafe(CafeEntity entity);
-
-    void updateCafe(CafeEntity entity);
-
-    //UUID addProduct(ProductEntity entity);
-
-    void removeCafe(UUID cafeUid);
 
     //void removeProduct(UUID productUid, UUID cafeUid);
 

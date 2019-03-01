@@ -16,7 +16,7 @@
 	<packaging>pom</packaging>
 
 	<name>by-the-coffee</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Getting coffee Service API</description>
 	<url>https://github.com/windmill312/by-the-coffee</url>
 
 	<properties>
@@ -26,7 +26,6 @@
 	</properties>
 
 	<modules>
-		<module>coffee-house</module>
 		<module>coffee-house</module>
         <module>proto-models</module>
     </modules>

@@ -1,5 +1,6 @@
 package com.sychev.coffeehouse.converter;
 
+import com.sychev.coffeehouse.grpc.model.v1.GAddCafeRequest;
 import com.sychev.coffeehouse.grpc.model.v1.GCafeInfo;
 import com.sychev.coffeehouse.grpc.model.v1.GLocation;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
@@ -36,19 +37,30 @@ public class ModelConverter {
         return GCafeInfo.newBuilder()
                 .setCafeUid(convert(entity.getUidCafe()))
                 .setCafeName(entity.getName())
-                .set
+                .setDescription(entity.getDescription())
                 .setLocation(convert(entity.getLatitude(), entity.getLongitude()))
+                .setOwnerUid(convert(entity.getOwnerUid()))
                 .build();
+    }
+
+    public static CafeEntity convert(GCafeInfo entity) {
+        return new CafeEntity()
+                .setUidCafe(convert(entity.getCafeUid()))
+                .setName(entity.getCafeName())
+                .setDescription(entity.getDescription())
+                .setLatitude(entity.getLocation().getLatitude())
+                .setLongitude(entity.getLocation().getLongitude())
+                .setOwnerUid(convert(entity.getOwnerUid()));
     }
 
     public static UUID convert(GUuid guuid) {
         return UUID.fromString(guuid.getUuid());
     }
 
-    private static GLocation convert(Double latitude, Double longtitude) {
+    private static GLocation convert(Double latitude, Double longitude) {
         return GLocation.newBuilder()
                 .setLatitude(latitude)
-                .setLongitude(longtitude)
+                .setLongitude(longitude)
                 .build();
     }
 
@@ -60,13 +72,5 @@ public class ModelConverter {
                 .setQuestionText(entity.getQuestionText())
                 .setQuestionAnswer(entity.getQuestionAnswer())
                 .build();
-    }
-
-    public static CafeEntity convert(GAddCafeRequest request) {
-        return new CafeEntity()
-                .setName(request.getCafe().getCafeName())
-                .setLo(request.getQuestionCategory())
-                .setQuestionText(request.getQuestionText())
-                .setQuestionAnswer(request.getQuestionAnswer());
     }*/
 }

@@ -3,7 +3,6 @@ package com.sychev.coffeehouse.service.impl;
 import com.sychev.coffeehouse.exception.NotFoundCafeException;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
 import com.sychev.coffeehouse.repository.CafeRepository;
-import com.sychev.coffeehouse.repository.ProductRepository;
 import com.sychev.coffeehouse.service.CoffeeHouseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,9 +28,15 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
         //this.productRepository = productRepository;
     }
 
+    //todo проверить диапазон широт и высот
     @Override
-    public Page<CafeEntity> getAllCafes(Pageable pageable) {
-        return cafeRepository.findAll(pageable);
+    public Page<CafeEntity> getAllCafesAroundClient(Pageable pageable, Double latitude, Double longitude) {
+        return cafeRepository.findByLatitudeBetweenAndLongitudeBetween(
+                pageable,
+                latitude - 20,
+                latitude + 20,
+                longitude - 20,
+                latitude + 20);
     }
 
     @Override
