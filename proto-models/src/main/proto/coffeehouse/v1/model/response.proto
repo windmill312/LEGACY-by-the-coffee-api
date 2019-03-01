@@ -16,7 +16,11 @@ message GGetCafeResponse {
     GCafeInfo cafe = 1;
 }
 
-message GGetAllProductsResponse {
+message GAddCafeResponse {
+    GUuid cafeUid = 1;
+}
+
+/*message GGetAllProductsResponse {
     GPage page = 1;
     repeated GProductInfo products = 2;
 }
@@ -30,10 +34,7 @@ message GGetProductsByCafeResponse {
     repeated GProductInfo products = 2;
 }
 
-message GAddCafeResponse {
-    GUuid cafeUid = 1;
-}
-
 message GAddProductResponse {
     GUuid productUid = 1;
-}
+}*/
+

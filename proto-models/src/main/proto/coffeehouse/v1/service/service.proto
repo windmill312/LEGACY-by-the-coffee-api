@@ -12,20 +12,22 @@ service CoffeeHouseServiceV1 {
 
     rpc getAllCafes (GGetAllCafesRequest) returns (GGetAllCafesResponse);
 
-    rpc getAllProducts (GGetAllProductsRequest) returns (GGetAllProductsResponse);
+    rpc getCafe (GGetCafeRequest) returns (GGetCafeResponse);
+
+    rpc addCafe (GAddCafeRequest) returns (GAddCafeResponse);
+
+    rpc updateCafe (GUpdateCafeRequest) returns (Empty);
+
+    rpc removeCafe (GRemoveCafeRequest) returns (Empty);
+
+    /*rpc getAllProducts (GGetAllProductsRequest) returns (GGetAllProductsResponse);
 
     rpc getProductsByCafe (GGetProductsByCafeRequest) returns (GGetProductsByCafeResponse);
 
     rpc getProduct (GGetProductRequest) returns (GGetProductResponse);
 
-    rpc getCafe (GGetCafeRequest) returns (GGetCafeResponse);
-
-    rpc addCafe (GAddCafeRequest) returns (GAddCafeResponse);
-
     rpc addProduct (GAddProductRequest) returns (GAddProductResponse);
 
-    rpc removeCafe (GRemoveCafeRequest) returns (Empty);
-
-    rpc removeProduct (GRemoveProductRequest) returns (Empty);
+    rpc removeProduct (GRemoveProductRequest) returns (Empty);*/
 
 }

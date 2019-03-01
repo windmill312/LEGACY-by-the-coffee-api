@@ -1,7 +1,7 @@
 package com.sychev.coffeehouse.converter;
 
-import com.sychev.coffeehouse.grpc.model.v1.GAddCafeRequest;
 import com.sychev.coffeehouse.grpc.model.v1.GCafeInfo;
+import com.sychev.coffeehouse.grpc.model.v1.GLocation;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
 import com.sychev.common.grpc.model.GPage;
 import com.sychev.common.grpc.model.GPageable;
@@ -32,16 +32,23 @@ public class ModelConverter {
                 .build();
     }
 
-    public static UUID convert(GUuid guuid) {
-        return UUID.fromString(guuid.getUuid());
-    }
-
     public static GCafeInfo convert(CafeEntity entity) {
         return GCafeInfo.newBuilder()
                 .setCafeUid(convert(entity.getUidCafe()))
                 .setCafeName(entity.getName())
-                .setLocation(entity.getLocation())
-                .setProducts(entity.getProducts())
+                .set
+                .setLocation(convert(entity.getLatitude(), entity.getLongitude()))
+                .build();
+    }
+
+    public static UUID convert(GUuid guuid) {
+        return UUID.fromString(guuid.getUuid());
+    }
+
+    private static GLocation convert(Double latitude, Double longtitude) {
+        return GLocation.newBuilder()
+                .setLatitude(latitude)
+                .setLongitude(longtitude)
                 .build();
     }
 
@@ -53,15 +60,13 @@ public class ModelConverter {
                 .setQuestionText(entity.getQuestionText())
                 .setQuestionAnswer(entity.getQuestionAnswer())
                 .build();
-    }*/
+    }
 
     public static CafeEntity convert(GAddCafeRequest request) {
         return new CafeEntity()
                 .setName(request.getCafe().getCafeName())
-                .set(request.getQuestionCategory())
+                .setLo(request.getQuestionCategory())
                 .setQuestionText(request.getQuestionText())
                 .setQuestionAnswer(request.getQuestionAnswer());
-    }
-}
-
+    }*/
 }

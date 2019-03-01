@@ -1,9 +1,7 @@
 package com.sychev.coffeehouse.service.impl;
 
 import com.sychev.coffeehouse.exception.NotFoundCafeException;
-import com.sychev.coffeehouse.exception.NotFoundProductException;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
-import com.sychev.coffeehouse.model.entity.ProductEntity;
 import com.sychev.coffeehouse.repository.CafeRepository;
 import com.sychev.coffeehouse.repository.ProductRepository;
 import com.sychev.coffeehouse.service.CoffeeHouseService;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -23,13 +20,12 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     private static final Logger logger = LoggerFactory.getLogger(CoffeeHouseServiceImpl.class);
 
     private final CafeRepository cafeRepository;
-    private final ProductRepository productRepository;
+    //private final ProductRepository productRepository;
 
     public CoffeeHouseServiceImpl(
-            CafeRepository cafeRepository,
-            ProductRepository productRepository) {
+            CafeRepository cafeRepository) {
         this.cafeRepository = cafeRepository;
-        this.productRepository = productRepository;
+        //this.productRepository = productRepository;
     }
 
     @Override
@@ -38,6 +34,37 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     }
 
     @Override
+    public CafeEntity getCafeByUid(UUID cafeUid) {
+        return cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+            logger.info("Not found cafe with uid={}", cafeUid);
+            return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
+        });
+    }
+
+    @Override
+    public UUID addCafe(CafeEntity entity) {
+        logger.debug("Add new cafe with name={}", entity.getName());
+        return cafeRepository.save(entity).getUidCafe();
+    }
+
+    @Override
+    public void updateCafe(CafeEntity entity) {
+        CafeEntity cafe = cafeRepository.findByUidCafe(entity.getUidCafe()).orElseThrow(() -> {
+            logger.info("Not found cafe with uid={}", entity.getUidCafe());
+            return new NotFoundCafeException("Not found cafe with uid=" + entity.getUidCafe());
+        });
+        logger.debug("Update cafe with name={}", entity.getName());
+        cafeRepository.save(cafe.copy(entity));
+    }
+
+    @Override
+    @Transactional
+    public void removeCafe(UUID cafeUid) {
+        cafeRepository.deleteByUidCafe(cafeUid);
+    }
+
+    /*
+    /*@Override
     public Page<ProductEntity> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
@@ -46,7 +73,7 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     public Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable) {
         CafeEntity cafe = cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
             logger.info("Not found cafe with uid={}", cafeUid);
-            return new NotFoundProductException("Not found cafe with uid=" + cafeUid);
+            return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
         });
         return productRepository.findByCafe(cafe, pageable);
     }
@@ -61,21 +88,9 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     }
 
     @Override
-    public UUID addCafe(CafeEntity entity) {
-        logger.debug("Add new cafe with name={}", entity.getName());
-        return cafeRepository.save(entity).getUidCafe();
-    }
-
-    @Override
     public UUID addProduct(ProductEntity entity) {
         logger.debug("Add new product with name={} for cafe={}", entity.getName(), entity.getCafe().getName());
         return productRepository.save(entity).getUidProduct();
-    }
-
-    @Override
-    @Transactional
-    public void removeCafe(UUID cafeUid) {
-        cafeRepository.deleteByUidCafe(cafeUid);
     }
 
     @Override
@@ -93,5 +108,5 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
         products.remove(product);
         cafe.setProducts(products);
         cafeRepository.save(cafe);
-    }
+    }*/
 }

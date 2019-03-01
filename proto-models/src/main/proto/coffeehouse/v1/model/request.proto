@@ -11,6 +11,7 @@ option java_package = "com.sychev.coffeehouse.grpc.model.v1";
 message GGetAllCafesRequest {
     //GAuthentication authentication = 1;
     GPageable pageable = 1;
+    GLocation location = 2;
 }
 
 message GGetCafeRequest {
@@ -18,7 +19,22 @@ message GGetCafeRequest {
     GUuid cafeUid = 1;
 }
 
-message GGetAllProductsRequest {
+message GAddCafeRequest {
+    //GAuthentication authentication = 1;
+    GCafeInfo cafe = 1;
+}
+
+message GUpdateCafeRequest {
+    //GAuthentication authentication = 1;
+    GCafeInfo cafe = 1;
+}
+
+message GRemoveCafeRequest {
+    //GAuthentication authentication = 1;
+    GUuid cafeUid = 1;
+}
+
+/*message GGetAllProductsRequest {
     //GAuthentication authentication = 1;
     GPageable pageable = 1;
 }
@@ -34,23 +50,13 @@ message GGetProductsByCafeRequest {
     GPageable pageable = 2;
 }
 
-message GAddCafeRequest {
-    //GAuthentication authentication = 1;
-    GCafeInfo cafe = 1;
-}
-
 message GAddProductRequest {
     //GAuthentication authentication = 1;
     GProductInfo product = 2;
-}
-
-message GRemoveCafeRequest {
-    //GAuthentication authentication = 1;
-    GUuid cafeUid = 1;
 }
 
 message GRemoveProductRequest {
     //GAuthentication authentication = 1;
     GUuid questionUid = 1;
     GUuid cafeUid = 2;
-}
+}*/

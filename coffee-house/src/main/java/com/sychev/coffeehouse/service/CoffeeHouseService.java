@@ -1,7 +1,6 @@
 package com.sychev.coffeehouse.service;
 
 import com.sychev.coffeehouse.model.entity.CafeEntity;
-import com.sychev.coffeehouse.model.entity.ProductEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,18 +10,22 @@ public interface CoffeeHouseService {
 
     Page<CafeEntity> getAllCafes(Pageable pageable);
 
-    Page<ProductEntity> getAllProducts(Pageable pageable);
+    CafeEntity getCafeByUid(UUID cafeUid);
 
-    Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable);
+    //Page<ProductEntity> getAllProducts(Pageable pageable);
 
-    ProductEntity getProductByUid(UUID productUid);
+    //Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable);
+
+    //ProductEntity getProductByUid(UUID productUid);
 
     UUID addCafe(CafeEntity entity);
 
-    UUID addProduct(ProductEntity entity);
+    void updateCafe(CafeEntity entity);
+
+    //UUID addProduct(ProductEntity entity);
 
     void removeCafe(UUID cafeUid);
 
-    void removeProduct(UUID productUid, UUID cafeUid);
+    //void removeProduct(UUID productUid, UUID cafeUid);
 
 }

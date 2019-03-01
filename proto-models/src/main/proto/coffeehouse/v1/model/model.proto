@@ -7,14 +7,20 @@ option java_package = "com.sychev.coffeehouse.grpc.model.v1";
 
 message GCafeInfo {
     GUuid cafeUid = 1;
-    GPair location = 2;
+    GLocation location = 2;
     string cafeName = 3;
-    repeated GProductInfo products = 4;
+    string description = 4;
+    GUuid ownerUid = 5;
 }
 
-message GPair {
+message GLocation {
     double latitude = 1;
     double longitude = 2;
+}
+
+/*message GWorkTime {
+    int64 openFromMills = 1;
+    int64 openTillMills = 2;
 }
 
 message GProductInfo {
@@ -23,4 +29,4 @@ message GProductInfo {
     string productDescription = 3;
     int32 productPrice = 4;
     GCafeInfo cafe = 5;
-}
+}*/

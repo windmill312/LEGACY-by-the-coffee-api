@@ -1,13 +1,12 @@
 package com.sychev.coffeehouse.model.entity;
 
-import javafx.util.Pair;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "cafe", schema = "coffeehouse")
@@ -15,9 +14,10 @@ public class CafeEntity {
 
     private Integer id;
     private UUID uidCafe = UUID.randomUUID();
-    private Pair<Double, Double> location;
+    private Double latitude;
+    private Double longitude;
     private String name;
-    private Set<ProductEntity> products = new HashSet<>();
+    private String description;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -42,13 +42,23 @@ public class CafeEntity {
     }
 
     @Basic
-    @Column(name = "location", nullable = false, length = 60)
-    public Pair<Double, Double> getLocation() {
-        return location;
+    @Column(name="latitude")
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(Pair<Double, Double> location) {
-        this.location = location;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    @Basic
+    @Column(name="longitude")
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     @Basic
@@ -61,13 +71,24 @@ public class CafeEntity {
         this.name = name;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "cafe")
-    public Set<ProductEntity> getProducts() {
-        return products;
+    @Basic
+    @Column(name = "description", length = 200)
+    public String getDescription() {
+        return description;
     }
 
-    public void setProducts(Set<ProductEntity> products) {
-        this.products = products;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public CafeEntity copy (CafeEntity entity) {
+        this.setName(entity.getName());
+        this.setUidCafe(entity.getUidCafe());
+        this.setDescription(entity.getDescription());
+        this.setLatitude(entity.getLatitude());
+        this.setLongitude(entity.getLongitude());
+        this.setId(entity.getId());
+        return this;
     }
 
     @Override
