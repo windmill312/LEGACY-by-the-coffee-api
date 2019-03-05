@@ -29,11 +29,28 @@ public class CoffeeHouseServiceV1GrpcImpl extends CoffeeHouseServiceV1Grpc.Coffe
             GGetAllCafesRequest request,
             StreamObserver<GGetAllCafesResponse> responseObserver) {
 
+        Page<CafeEntity> cafes = coffeeHouseService.getAllCafes(ModelConverter.convert(request.getPageable()));
+
+        responseObserver.onNext(GGetAllCafesResponse.newBuilder()
+                .setPage(ModelConverter.convert(cafes))
+                .addAllCafes(cafes.getContent()
+                        .stream()
+                        .map(ModelConverter::convert)
+                        .collect(Collectors.toList()))
+                .build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void getAllCafesAroundClient(
+            GGetAllCafesAroundClientRequest request,
+            StreamObserver<GGetAllCafesAroundClientResponse> responseObserver) {
+
         Page<CafeEntity> cafes = coffeeHouseService.getAllCafesAroundClient(ModelConverter.convert(request.getPageable()),
                 request.getLocation().getLatitude(),
                 request.getLocation().getLongitude());
 
-        responseObserver.onNext(GGetAllCafesResponse.newBuilder()
+        responseObserver.onNext(GGetAllCafesAroundClientResponse.newBuilder()
                 .setPage(ModelConverter.convert(cafes))
                 .addAllCafes(cafes.getContent()
                         .stream()
@@ -74,7 +91,9 @@ public class CoffeeHouseServiceV1GrpcImpl extends CoffeeHouseServiceV1Grpc.Coffe
             GUpdateCafeRequest request,
             StreamObserver<Empty> responseObserver) {
 
-        coffeeHouseService.updateCafe(ModelConverter.convert(request.getCafe()));
+        coffeeHouseService.updateCafe(
+                ModelConverter.convert(request.getCafe())
+                        .setCafeUid(ModelConverter.convert(request.getCafe().getCafeUid())));
 
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();

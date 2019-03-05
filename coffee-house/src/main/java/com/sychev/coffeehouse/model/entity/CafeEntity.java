@@ -13,7 +13,7 @@ import java.util.UUID;
 public class CafeEntity {
 
     private Integer id;
-    private UUID uidCafe = UUID.randomUUID();
+    private UUID cafeUid = UUID.randomUUID();
     private Double latitude;
     private Double longitude;
     private String name;
@@ -34,17 +34,17 @@ public class CafeEntity {
     @Basic
     @Type(type = "pg-uuid")
     @Column(name = "cafe_uid")
-    public UUID getUidCafe() {
-        return uidCafe;
+    public UUID getCafeUid() {
+        return cafeUid;
     }
 
-    public CafeEntity setUidCafe(UUID uidCafe) {
-        this.uidCafe = uidCafe;
+    public CafeEntity setCafeUid(UUID cafeUid) {
+        this.cafeUid = cafeUid;
         return this;
     }
 
     @Basic
-    @Column(name="latitude")
+    @Column(name = "latitude")
     public Double getLatitude() {
         return latitude;
     }
@@ -55,7 +55,7 @@ public class CafeEntity {
     }
 
     @Basic
-    @Column(name="longitude")
+    @Column(name = "longitude")
     public Double getLongitude() {
         return longitude;
     }
@@ -66,7 +66,7 @@ public class CafeEntity {
     }
 
     @Basic
-    @Column(name = "name", unique = true, nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     public String getName() {
         return name;
     }
@@ -99,13 +99,12 @@ public class CafeEntity {
         return this;
     }
 
-    public CafeEntity copy (CafeEntity entity) {
+    public CafeEntity copy(CafeEntity entity) {
         this.setName(entity.getName());
-        this.setUidCafe(entity.getUidCafe());
+        this.setCafeUid(entity.getCafeUid());
         this.setDescription(entity.getDescription());
         this.setLatitude(entity.getLatitude());
         this.setLongitude(entity.getLongitude());
-        this.setId(entity.getId());
         return this;
     }
 

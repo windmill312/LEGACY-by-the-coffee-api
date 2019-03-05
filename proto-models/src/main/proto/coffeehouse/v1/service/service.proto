@@ -10,6 +10,8 @@ option java_package = "com.sychev.coffeehouse.grpc.service.v1";
 
 service CoffeeHouseServiceV1 {
 
+    rpc getAllCafesAroundClient (GGetAllCafesAroundClientRequest) returns (GGetAllCafesAroundClientResponse);
+
     rpc getAllCafes (GGetAllCafesRequest) returns (GGetAllCafesResponse);
 
     rpc getCafe (GGetCafeRequest) returns (GGetCafeResponse);

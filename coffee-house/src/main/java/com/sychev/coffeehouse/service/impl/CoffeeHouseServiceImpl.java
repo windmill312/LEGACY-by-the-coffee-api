@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -40,8 +39,13 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     }
 
     @Override
+    public Page<CafeEntity> getAllCafes(Pageable pageable) {
+        return cafeRepository.findAll(pageable);
+    }
+
+    @Override
     public CafeEntity getCafeByUid(UUID cafeUid) {
-        return cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+        return cafeRepository.findByCafeUid(cafeUid).orElseThrow(() -> {
             logger.info("Not found cafe with uid={}", cafeUid);
             return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
         });
@@ -50,14 +54,14 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     @Override
     public UUID addCafe(CafeEntity entity) {
         logger.debug("Add new cafe with name={}", entity.getName());
-        return cafeRepository.save(entity).getUidCafe();
+        return cafeRepository.save(entity).getCafeUid();
     }
 
     @Override
     public void updateCafe(CafeEntity entity) {
-        CafeEntity cafe = cafeRepository.findByUidCafe(entity.getUidCafe()).orElseThrow(() -> {
-            logger.info("Not found cafe with uid={}", entity.getUidCafe());
-            return new NotFoundCafeException("Not found cafe with uid=" + entity.getUidCafe());
+        CafeEntity cafe = cafeRepository.findByCafeUid(entity.getCafeUid()).orElseThrow(() -> {
+            logger.info("Not found cafe with uid={}", entity.getCafeUid());
+            return new NotFoundCafeException("Not found cafe with uid=" + entity.getCafeUid());
         });
         logger.debug("Update cafe with name={}", entity.getName());
         cafeRepository.save(cafe.copy(entity));
@@ -66,7 +70,7 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     @Override
     @Transactional
     public void removeCafe(UUID cafeUid) {
-        cafeRepository.deleteByUidCafe(cafeUid);
+        cafeRepository.deleteByCafeUid(cafeUid);
     }
 
     /*
@@ -77,7 +81,7 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
 
     @Override
     public Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable) {
-        CafeEntity cafe = cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+        CafeEntity cafe = cafeRepository.findByCafeUid(cafeUid).orElseThrow(() -> {
             logger.info("Not found cafe with uid={}", cafeUid);
             return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
         });
@@ -102,7 +106,7 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     @Override
     @Transactional
     public void removeProduct(UUID productUid, UUID cafeUid) {
-        CafeEntity cafe = cafeRepository.findByUidCafe(cafeUid).orElseThrow(() -> {
+        CafeEntity cafe = cafeRepository.findByCafeUid(cafeUid).orElseThrow(() -> {
             logger.info("Not found cafe with uid={}", cafeUid);
             return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
         });

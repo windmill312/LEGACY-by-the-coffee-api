@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,13 +14,13 @@ public interface CafeRepository extends JpaRepository<CafeEntity, Integer> {
 
     Optional<CafeEntity> findByName(String name);
 
-    Optional<CafeEntity> findByUidCafe(UUID cafeUid);
+    Optional<CafeEntity> findByCafeUid(UUID cafeUid);
 
-    void deleteByUidCafe(UUID cafeUid);
+    void deleteByCafeUid(UUID cafeUid);
 
     Page<CafeEntity> findByLatitudeBetweenAndLongitudeBetween(Pageable pageable,
-                                                                    Double fromLatitude,
-                                                                    Double tillLatitude,
-                                                                    Double fromLongitude,
-                                                                    Double tillLongitude);
+                                                              Double fromLatitude,
+                                                              Double tillLatitude,
+                                                              Double fromLongitude,
+                                                              Double tillLongitude);
 }

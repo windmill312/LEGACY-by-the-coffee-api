@@ -1,6 +1,5 @@
 package com.sychev.coffeehouse.converter;
 
-import com.sychev.coffeehouse.grpc.model.v1.GAddCafeRequest;
 import com.sychev.coffeehouse.grpc.model.v1.GCafeInfo;
 import com.sychev.coffeehouse.grpc.model.v1.GLocation;
 import com.sychev.coffeehouse.model.entity.CafeEntity;
@@ -35,7 +34,7 @@ public class ModelConverter {
 
     public static GCafeInfo convert(CafeEntity entity) {
         return GCafeInfo.newBuilder()
-                .setCafeUid(convert(entity.getUidCafe()))
+                .setCafeUid(convert(entity.getCafeUid()))
                 .setCafeName(entity.getName())
                 .setDescription(entity.getDescription())
                 .setLocation(convert(entity.getLatitude(), entity.getLongitude()))
@@ -45,7 +44,6 @@ public class ModelConverter {
 
     public static CafeEntity convert(GCafeInfo entity) {
         return new CafeEntity()
-                .setUidCafe(convert(entity.getCafeUid()))
                 .setName(entity.getCafeName())
                 .setDescription(entity.getDescription())
                 .setLatitude(entity.getLocation().getLatitude())

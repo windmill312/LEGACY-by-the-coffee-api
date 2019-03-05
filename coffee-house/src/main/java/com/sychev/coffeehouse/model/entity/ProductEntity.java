@@ -1,4 +1,4 @@
-package com.sychev.coffeehouse.model.entity;
+/*package com.sychev.coffeehouse.model.entity;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -95,4 +95,4 @@ public class ProductEntity {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
-}
+}*/

@@ -1,10 +1,10 @@
 grpc:
-  port: 6568
+  port: 8081
 
 logging:
   path: logs
-  level: INFO
-  level.org.hibernate: INFO
+  level: DEBUG
+  level.org.hibernate: DEBUG
   level.com.sychev: DEBUG
 
 spring:
@@ -19,7 +19,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         temp:

@@ -8,10 +8,15 @@ option java_multiple_files = true;
 option java_package = "com.sychev.coffeehouse.grpc.model.v1";
 
 
-message GGetAllCafesRequest {
+message GGetAllCafesAroundClientRequest {
     //GAuthentication authentication = 1;
     GPageable pageable = 1;
     GLocation location = 2;
+}
+
+message GGetAllCafesRequest {
+    //GAuthentication authentication = 1;
+    GPageable pageable = 1;
 }
 
 message GGetCafeRequest {

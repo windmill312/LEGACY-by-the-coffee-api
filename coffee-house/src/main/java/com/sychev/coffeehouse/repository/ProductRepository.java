@@ -1,4 +1,4 @@
-package com.sychev.coffeehouse.repository;
+/*package com.sychev.coffeehouse.repository;
 
 import com.sychev.coffeehouse.model.entity.CafeEntity;
 import com.sychev.coffeehouse.model.entity.ProductEntity;
@@ -18,4 +18,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
     Page<ProductEntity> findByCafe(CafeEntity cafe, Pageable pageable);
 
     void deleteByUidProduct(UUID productUid);
-}
+}*/

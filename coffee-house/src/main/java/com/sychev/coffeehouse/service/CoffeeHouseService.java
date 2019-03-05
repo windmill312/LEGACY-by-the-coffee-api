@@ -10,6 +10,8 @@ public interface CoffeeHouseService {
 
     Page<CafeEntity> getAllCafesAroundClient(Pageable pageable, Double latitude, Double longitude);
 
+    Page<CafeEntity> getAllCafes(Pageable pageable);
+
     CafeEntity getCafeByUid(UUID cafeUid);
 
     UUID addCafe(CafeEntity entity);
