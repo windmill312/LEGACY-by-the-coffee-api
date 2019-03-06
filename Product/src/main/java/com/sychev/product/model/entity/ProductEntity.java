@@ -18,7 +18,7 @@ public class ProductEntity {
     private String name;
     private String description;
     private Integer price;
-    private ProductGroup group;
+    private ProductGroup productGroup;
 
     public ProductEntity() {}
 
@@ -78,13 +78,13 @@ public class ProductEntity {
     }
 
     @Basic
-    @Column(name = "group", nullable = false)
-    public ProductGroup getGroup() {
-        return group;
+    @Column(name = "productGroup", nullable = false)
+    public ProductGroup getProductGroup() {
+        return productGroup;
     }
 
-    public ProductEntity setGroup(ProductGroup group) {
-        this.group = group;
+    public ProductEntity setProductGroup(ProductGroup productGroup) {
+        this.productGroup = productGroup;
         return this;
     }
 

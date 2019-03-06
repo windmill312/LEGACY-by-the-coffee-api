@@ -1,18 +1,20 @@
 package com.sychev.product.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.context.annotation.Primary;
+
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "product_cafe", schema = "supplies")
 public class ProductCafeEntity {
 
+    private Integer id;
     private UUID productUid;
     private UUID cafeUid;
+    private ProductEntity product;
 
-    @Id
+    @Primary
     public UUID getProductUid() {
         return productUid;
     }
@@ -21,7 +23,7 @@ public class ProductCafeEntity {
         this.productUid = productUid;
     }
 
-    @Id
+    @Primary
     public UUID getCafeUid() {
         return cafeUid;
     }
@@ -30,4 +32,23 @@ public class ProductCafeEntity {
         this.cafeUid = cafeUid;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product", nullable = false)
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

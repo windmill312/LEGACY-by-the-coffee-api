@@ -13,7 +13,4 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
     void deleteByProductUid (UUID productUid);
 
-    @Query("")
-    Optional<ProductEntity> findAllByProductUid;
-
 }
