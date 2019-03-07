@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -19,8 +21,11 @@ public class ProductEntity {
     private String description;
     private Integer price;
     private ProductGroup productGroup;
+    private Set<ProductCafeEntity> productCafe = new HashSet<>();
 
-    public ProductEntity() {}
+
+    public ProductEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -33,7 +38,6 @@ public class ProductEntity {
         return this;
     }
 
-    @Basic
     @Type(type = "pg-uuid")
     @Column(name = "product_uid", nullable = false)
     public UUID getProductUid() {
@@ -45,8 +49,7 @@ public class ProductEntity {
         return this;
     }
 
-    @Basic
-    @Column(name = "name", unique = true, nullable = false, length = 60)
+    @Column(name = "name", nullable = false, length = 60)
     public String getName() {
         return name;
     }
@@ -56,7 +59,6 @@ public class ProductEntity {
         return this;
     }
 
-    @Basic
     @Column(name = "description", length = 100)
     public String getDescription() {
         return description;
@@ -67,7 +69,6 @@ public class ProductEntity {
         return this;
     }
 
-    @Basic
     @Column(name = "price", nullable = false)
     public Integer getPrice() {
         return price;
@@ -78,7 +79,6 @@ public class ProductEntity {
         return this;
     }
 
-    @Basic
     @Column(name = "productGroup", nullable = false)
     public ProductGroup getProductGroup() {
         return productGroup;
@@ -89,12 +89,23 @@ public class ProductEntity {
         return this;
     }
 
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.REMOVE})
+    public Set<ProductCafeEntity> getProductCafe() {
+        return productCafe;
+    }
+
+    public ProductEntity setProductCafe(Set<ProductCafeEntity> productCafe) {
+        this.productCafe = productCafe;
+        return this;
+    }
+
     public ProductEntity copy(ProductEntity entity) {
         this.setProductUid(entity.getProductUid());
         this.setProductGroup(entity.getProductGroup());
         this.setPrice(entity.getPrice());
         this.setDescription(entity.getDescription());
         this.setName(entity.getName());
+        this.setProductCafe(entity.getProductCafe());
         return this;
     }
 

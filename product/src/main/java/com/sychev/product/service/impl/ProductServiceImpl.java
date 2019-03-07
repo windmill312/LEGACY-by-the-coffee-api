@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void linkProductAndCafe(UUID cafeUid, UUID productUid) {
+    public void linkCafeAndProduct(UUID cafeUid, UUID productUid) {
         ProductEntity product = productRepository.findByProductUid(productUid).orElseThrow(() -> {
             logger.info("Not found product with uid={}", productUid);
             return new NotFoundProductException("Not found product with uid=" + productUid);
@@ -80,12 +80,14 @@ public class ProductServiceImpl implements ProductService {
                 .setCafeUid(cafeUid)
                 .setProductUid(productUid)
                 .setProduct(product);
+
         productCafeRepository.save(productCafe);
     }
 
     @Override
-    public void unlinkProductAndCafe(UUID cafeUid, UUID productUid) {
-        productCafeRepository.deleteByProductUidAndCafeUid(cafeUid, productUid);
+    @Transactional
+    public void unlinkCafeAndProduct(UUID cafeUid, UUID productUid) {
+        productCafeRepository.deleteByProductUidAndCafeUid(productUid, cafeUid);
     }
 
     //todo разобраться как именно работает Transactional

@@ -103,7 +103,7 @@ public class ProductServiceV1GrpcImpl extends ProductServiceV1Grpc.ProductServic
             GLinkProductAndCafeRequest request,
             StreamObserver<Empty> responseObserver) {
 
-        productService.linkProductAndCafe(ModelConverter.convert(request.getCafeUid()), ModelConverter.convert(request.getProductUid()));
+        productService.linkCafeAndProduct(ModelConverter.convert(request.getCafeUid()), ModelConverter.convert(request.getProductUid()));
 
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
@@ -114,7 +114,7 @@ public class ProductServiceV1GrpcImpl extends ProductServiceV1Grpc.ProductServic
             GUnlinkProductAndCafeRequest request,
             StreamObserver<Empty> responseObserver) {
 
-        productService.unlinkProductAndCafe(ModelConverter.convert(request.getCafeUid()), ModelConverter.convert(request.getProductUid()));
+        productService.unlinkCafeAndProduct(ModelConverter.convert(request.getCafeUid()), ModelConverter.convert(request.getProductUid()));
 
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();

@@ -45,3 +45,6 @@ gateway:
     CoffeeHouseServiceV1Grpc:
       host: localhost
       port: 8081
+    ProductServiceV1Grpc:
+      host: localhost
+      port: 8082

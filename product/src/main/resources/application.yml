@@ -3,8 +3,8 @@ grpc:
 
 logging:
   path: logs
-  level: DEBUG
-  level.org.hibernate: DEBUG
+  level: INFO
+  level.org.hibernate: INFO
   level.com.sychev: DEBUG
 
 spring:

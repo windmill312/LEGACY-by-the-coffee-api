@@ -19,11 +19,11 @@ public interface ProductService {
 
     void updateProduct(ProductEntity entity);
 
-    void linkProductAndCafe(UUID cafeUid, UUID productUid);
+    void linkCafeAndProduct(UUID cafeUid, UUID productUid);
 
-    void unlinkProductAndCafe(UUID cafeUid, UUID productUid);
+    void unlinkCafeAndProduct(UUID cafeUid, UUID productUid);
 
     void removeProduct(UUID productUid);
 
-    void removeAllProductsByCafe (UUID cafeUid);
+    void removeAllProductsByCafe(UUID cafeUid);
 }

@@ -51,7 +51,6 @@ public class ModelConverter {
                 .setName(entity.getName())
                 .setDescription(entity.getDescription())
                 .setPrice(entity.getPrice())
-                .setProductUid(convert(entity.getProductUid()))
                 .setProductGroup(toProductGroup(entity.getGroup()));
     }
 

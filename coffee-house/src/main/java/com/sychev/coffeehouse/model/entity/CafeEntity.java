@@ -44,7 +44,7 @@ public class CafeEntity {
     }
 
     @Basic
-    @Column(name="latitude")
+    @Column(name = "latitude")
     public Double getLatitude() {
         return latitude;
     }
@@ -55,7 +55,7 @@ public class CafeEntity {
     }
 
     @Basic
-    @Column(name="longitude")
+    @Column(name = "longitude")
     public Double getLongitude() {
         return longitude;
     }
@@ -99,7 +99,7 @@ public class CafeEntity {
         return this;
     }
 
-    public CafeEntity copy (CafeEntity entity) {
+    public CafeEntity copy(CafeEntity entity) {
         this.setName(entity.getName());
         this.setCafeUid(entity.getCafeUid());
         this.setDescription(entity.getDescription());

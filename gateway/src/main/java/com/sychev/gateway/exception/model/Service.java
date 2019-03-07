@@ -4,6 +4,6 @@ public enum Service {
     GATEWAY,
     COMMON_AUTH,
     COFFEEHOUSE,
-    QUIZ,
+    PRODUCT,
     TESTS
 }
