@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+//import "auth/v1/model/model.proto";
+import "product/v1/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.product.grpc.model.v1";
+
+message GGetAllProductsRequest {
+    //GAuthentication authentication = 1;
+    GPageable pageable = 1;
+}
+
+message GGetProductRequest {
+    //GAuthentication authentication = 1;
+    GUuid productUid = 1;
+}
+
+message GGetProductsByCafeRequest {
+    //GAuthentication authentication = 1;
+    GUuid cafeUid = 1;
+}
+
+message GAddProductRequest {
+    //GAuthentication authentication = 1;
+    GProductInfo product = 2;
+}
+
+message GUpdateProductRequest {
+    //GAuthentication authentication = 1;
+    GProductInfo product = 2;
+}
+
+message GLinkProductAndCafeRequest {
+    //GAuthentication authentication = 1;
+    GUuid productUid = 1;
+    GUuid cafeUid = 2;
+
+}
+
+message GUnlinkProductAndCafeRequest {
+    //GAuthentication authentication = 1;
+    GUuid productUid = 1;
+    GUuid cafeUid = 2;
+}
+
+message GRemoveProductRequest {
+    //GAuthentication authentication = 1;
+    GUuid productUid = 1;
+}
+
+message GRemoveProductsByCafeRequest {
+    //GAuthentication authentication = 1;
+    GUuid cafeUid = 1;
+}

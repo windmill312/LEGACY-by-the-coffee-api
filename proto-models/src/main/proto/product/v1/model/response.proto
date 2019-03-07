@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+import "product/v1/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.product.grpc.model.v1";
+
+message GGetAllProductsResponse {
+    GPage page = 1;
+    repeated GProductInfo products = 2;
+}
+
+message GGetProductResponse {
+    GProductInfo product = 1;
+}
+
+message GGetProductsByCafeResponse {
+    repeated GProductInfo products = 2;
+}
+
+message GAddProductResponse {
+    GUuid productUid = 1;
+}
+
+
+

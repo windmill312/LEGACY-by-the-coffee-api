@@ -1,8 +1,8 @@
-package com.sychev.coffeehouse.exception;
+package com.sychev.product.exception;
 
 public class NotFoundProductException extends RuntimeException {
 
-    private static final long serialVersionUID = -7368911869005257495L;
+    private static final long serialVersionUID = 4214090731521988527L;
 
     public NotFoundProductException() {
         super();

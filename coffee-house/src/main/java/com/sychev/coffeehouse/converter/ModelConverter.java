@@ -61,14 +61,4 @@ public class ModelConverter {
                 .setLongitude(longitude)
                 .build();
     }
-
-    /*public static GInterviewQuestionInfo convert(QuestionEntity entity) {
-        return GInterviewQuestionInfo.newBuilder()
-                .setQuestionUid(convert(entity.getQuestionUid()))
-                .setQuestionName(entity.getQuestionName())
-                .setCategory(entity.getCategory())
-                .setQuestionText(entity.getQuestionText())
-                .setQuestionAnswer(entity.getQuestionAnswer())
-                .build();
-    }*/
 }

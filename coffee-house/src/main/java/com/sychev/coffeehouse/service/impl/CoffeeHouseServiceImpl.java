@@ -19,12 +19,10 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     private static final Logger logger = LoggerFactory.getLogger(CoffeeHouseServiceImpl.class);
 
     private final CafeRepository cafeRepository;
-    //private final ProductRepository productRepository;
 
     public CoffeeHouseServiceImpl(
             CafeRepository cafeRepository) {
         this.cafeRepository = cafeRepository;
-        //this.productRepository = productRepository;
     }
 
     //todo проверить диапазон широт и высот
@@ -72,51 +70,4 @@ public class CoffeeHouseServiceImpl implements CoffeeHouseService {
     public void removeCafe(UUID cafeUid) {
         cafeRepository.deleteByCafeUid(cafeUid);
     }
-
-    /*
-    /*@Override
-    public Page<ProductEntity> getAllProducts(Pageable pageable) {
-        return productRepository.findAll(pageable);
-    }
-
-    @Override
-    public Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable) {
-        CafeEntity cafe = cafeRepository.findByCafeUid(cafeUid).orElseThrow(() -> {
-            logger.info("Not found cafe with uid={}", cafeUid);
-            return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
-        });
-        return productRepository.findByCafe(cafe, pageable);
-    }
-
-    @Override
-    public ProductEntity getProductByUid(UUID productUid) {
-        return productRepository.findByUidProduct(productUid)
-                .orElseThrow(() -> {
-                    logger.info("Not found product with uid={}", productUid);
-                    return new NotFoundProductException("Not found product with uid=" + productUid);
-                });
-    }
-
-    @Override
-    public UUID addProduct(ProductEntity entity) {
-        logger.debug("Add new product with name={} for cafe={}", entity.getName(), entity.getCafe().getName());
-        return productRepository.save(entity).getUidProduct();
-    }
-
-    @Override
-    @Transactional
-    public void removeProduct(UUID productUid, UUID cafeUid) {
-        CafeEntity cafe = cafeRepository.findByCafeUid(cafeUid).orElseThrow(() -> {
-            logger.info("Not found cafe with uid={}", cafeUid);
-            return new NotFoundCafeException("Not found cafe with uid=" + cafeUid);
-        });
-        ProductEntity product = productRepository.findByUidProduct(productUid).orElseThrow(() -> {
-            logger.info("Not found product with uid={}", productUid);
-            return new NotFoundProductException("Not found product with uid=" + productUid);
-        });
-        Set<ProductEntity> products = cafe.getProducts();
-        products.remove(product);
-        cafe.setProducts(products);
-        cafeRepository.save(cafe);
-    }*/
 }

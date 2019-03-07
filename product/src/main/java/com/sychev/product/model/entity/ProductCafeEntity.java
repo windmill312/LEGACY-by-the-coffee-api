@@ -19,8 +19,9 @@ public class ProductCafeEntity {
         return productUid;
     }
 
-    public void setProductUid(UUID productUid) {
+    public ProductCafeEntity setProductUid(UUID productUid) {
         this.productUid = productUid;
+        return this;
     }
 
     @Primary
@@ -28,8 +29,9 @@ public class ProductCafeEntity {
         return cafeUid;
     }
 
-    public void setCafeUid(UUID cafeUid) {
+    public ProductCafeEntity setCafeUid(UUID cafeUid) {
         this.cafeUid = cafeUid;
+        return this;
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -38,8 +40,9 @@ public class ProductCafeEntity {
         return product;
     }
 
-    public void setProduct(ProductEntity product) {
+    public ProductCafeEntity setProduct(ProductEntity product) {
         this.product = product;
+        return this;
     }
 
     @Id

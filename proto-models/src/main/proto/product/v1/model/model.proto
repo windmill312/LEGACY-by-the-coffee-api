@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.product.grpc.model.v1";
+
+message GProductInfo {
+    GUuid productUid = 1;
+    string name = 2;
+    string description = 3;
+    int32 price = 4;
+    GProductGroup group = 5;
+
+    enum GProductGroup {
+        BEVERAGES = 0;
+        BAKE = 1;
+        SWEET = 2;
+    }
+}

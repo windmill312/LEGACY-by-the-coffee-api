@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+import "product/v1/model/request.proto";
+import "product/v1/model/response.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.product.grpc.service.v1";
+
+
+service ProductServiceV1 {
+
+    rpc getAllProducts (GGetAllProductsRequest) returns (GGetAllProductsResponse);
+
+    rpc getProductsByCafe (GGetProductsByCafeRequest) returns (GGetProductsByCafeResponse);
+
+    rpc getProduct (GGetProductRequest) returns (GGetProductResponse);
+
+    rpc addProduct (GAddProductRequest) returns (GAddProductResponse);
+
+    rpc updateProduct (GUpdateProductRequest) returns (Empty);
+
+    rpc linkProductAndCafe (GLinkProductAndCafeRequest) returns (Empty);
+
+    rpc unlinkProductAndCafe (GUnlinkProductAndCafeRequest) returns (Empty);
+
+    rpc removeProduct (GRemoveProductRequest) returns (Empty);
+
+    rpc removeProductsByCafe (GRemoveProductsByCafeRequest) returns (Empty);
+
+}

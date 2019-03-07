@@ -1,5 +1,6 @@
-/*package com.sychev.coffeehouse.model.entity;
+package com.sychev.product.model.entity;
 
+import com.sychev.product.model.ProductGroup;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -9,35 +10,39 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "product", schema = "coffeehouse")
+@Table(name = "product", schema = "supplies")
 public class ProductEntity {
 
     private Integer id;
-    private UUID uidProduct = UUID.randomUUID();
+    private UUID productUid = UUID.randomUUID();
     private String name;
     private String description;
     private Integer price;
-    private CafeEntity cafe;
+    private ProductGroup productGroup;
 
     public ProductEntity() {}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public ProductEntity setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     @Basic
     @Type(type = "pg-uuid")
-    @Column(name = "question_uid", nullable = false)
-    public UUID getUidProduct() {
-        return uidProduct;
+    @Column(name = "product_uid", nullable = false)
+    public UUID getProductUid() {
+        return productUid;
     }
 
-    public void setUidProduct(UUID uidProduct) {
-        this.uidProduct = uidProduct;
+    public ProductEntity setProductUid(UUID productUid) {
+        this.productUid = productUid;
+        return this;
     }
 
     @Basic
@@ -46,8 +51,9 @@ public class ProductEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public ProductEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Basic
@@ -56,8 +62,9 @@ public class ProductEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    public ProductEntity setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     @Basic
@@ -66,19 +73,29 @@ public class ProductEntity {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public ProductEntity setPrice(Integer price) {
         this.price = price;
+        return this;
     }
 
     @Basic
-    @ManyToOne
-    @JoinColumn(name="cafe_uid")
-    public CafeEntity getCafe() {
-        return cafe;
+    @Column(name = "productGroup", nullable = false)
+    public ProductGroup getProductGroup() {
+        return productGroup;
     }
 
-    public void setCafe(CafeEntity cafe) {
-        this.cafe = cafe;
+    public ProductEntity setProductGroup(ProductGroup productGroup) {
+        this.productGroup = productGroup;
+        return this;
+    }
+
+    public ProductEntity copy(ProductEntity entity) {
+        this.setProductUid(entity.getProductUid());
+        this.setProductGroup(entity.getProductGroup());
+        this.setPrice(entity.getPrice());
+        this.setDescription(entity.getDescription());
+        this.setName(entity.getName());
+        return this;
     }
 
     @Override
@@ -95,4 +112,4 @@ public class ProductEntity {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
-}*/
+}

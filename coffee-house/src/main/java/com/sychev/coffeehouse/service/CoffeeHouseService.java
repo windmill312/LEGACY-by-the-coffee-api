@@ -20,14 +20,4 @@ public interface CoffeeHouseService {
 
     void removeCafe(UUID cafeUid);
 
-    //UUID addProduct(ProductEntity entity);
-
-    //Page<ProductEntity> getAllProducts(Pageable pageable);
-
-    //Page<ProductEntity> getProductsByCafe(UUID cafeUid, Pageable pageable);
-
-    //ProductEntity getProductByUid(UUID productUid);
-
-    //void removeProduct(UUID productUid, UUID cafeUid);
-
 }
