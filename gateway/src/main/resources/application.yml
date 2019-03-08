@@ -48,3 +48,6 @@ gateway:
     ProductServiceV1Grpc:
       host: localhost
       port: 8082
+    OrderServiceV1Grpc:
+      host: localhost
+      port: 8083
