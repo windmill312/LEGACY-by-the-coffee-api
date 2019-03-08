@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.order.grpc.model.v1";
+
+message GOrderInfo {
+    GUuid orderUid = 1;
+    GUuid cafeUid = 2;
+    GUuid customerUid = 3;
+    repeated OrderProduct products = 4;
+    double price = 5;
+    int64 createMills = 6;
+    int64 receiveMills = 7;
+    OrderStatus status = 8;
+
+    enum OrderStatus {
+        CREATED = 0;
+        WAITING_FOR_RECEIVE = 1;
+        FAILED = 2;
+        SUCCESSFULLY_COMPLETED = 3;
+    }
+
+    message OrderProduct {
+        GUuid productUid = 1;
+        int32 quantity = 2;
+    }
+}

@@ -65,10 +65,10 @@ public class CoffeeHouseServiceV1GrpcImpl extends CoffeeHouseServiceV1Grpc.Coffe
             GGetCafeRequest request,
             StreamObserver<GGetCafeResponse> responseObserver) {
 
-        CafeEntity question = coffeeHouseService.getCafeByUid(ModelConverter.convert(request.getCafeUid()));
+        CafeEntity cafe = coffeeHouseService.getCafeByUid(ModelConverter.convert(request.getCafeUid()));
 
         responseObserver.onNext(GGetCafeResponse.newBuilder()
-                .setCafe(ModelConverter.convert(question))
+                .setCafe(ModelConverter.convert(cafe))
                 .build());
         responseObserver.onCompleted();
     }
@@ -109,23 +109,5 @@ public class CoffeeHouseServiceV1GrpcImpl extends CoffeeHouseServiceV1Grpc.Coffe
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
     }
-
-    /*@Override
-    public void getAllProducts(
-            GGetAllProductsRequest request,
-            StreamObserver<GGetAllProductsResponse> responseObserver) {
-
-        Page<ProductEntity> questions = coffeeHouseService.getAllProducts(
-                ModelConverter.convert(request.getPageable()));
-
-        responseObserver.onNext(GGetAllProductsResponse.newBuilder()
-                .setPage(ModelConverter.convert(questions))
-                .addAllQuestions(questions.getContent()
-                        .stream()
-                        .map(ModelConverter::convert)
-                        .collect(Collectors.toList()))
-                .build());
-        responseObserver.onCompleted();
-    }*/
 
 }

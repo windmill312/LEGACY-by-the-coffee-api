@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+//import "auth/v1/model/model.proto";
+import "order/v1/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.order.grpc.model.v1";
+
+message GGetAllOrdersRequest {
+    //GAuthentication authentication = 1;
+    GPageable pageable = 1;
+}
+
+message GGetAllOrdersByCustomerRequest {
+    //GAuthentication authentication = 1;
+    GUuid customerUid = 1;
+}
+
+message GGetOrderRequest {
+    //GAuthentication authentication = 1;
+    GUuid orderUid = 1;
+}
+
+message GAddOrderRequest {
+    //GAuthentication authentication = 1;
+    GOrderInfo order = 1;
+}
+
+message GUpdateOrderRequest {
+    //GAuthentication authentication = 1;
+    GOrderInfo order = 1;
+}
+
+message GRemoveOrderRequest {
+    //GAuthentication authentication = 1;
+    GUuid orderUid = 1;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "common/model/model.proto";
+import "order/v1/model/model.proto";
+
+option java_multiple_files = true;
+option java_package = "com.sychev.order.grpc.model.v1";
+
+
+message GGetAllOrdersResponse {
+    GPage page = 1;
+    repeated GOrderInfo orders = 2;
+}
+
+message GGetAllOrdersByCustomerResponse {
+    GPage page = 1;
+    repeated GOrderInfo orders = 2;
+}
+
+message GGetOrderResponse {
+    GOrderInfo order = 1;
+}
+
+message GAddOrderResponse {
+    GUuid orderUid = 1;
+}
+
