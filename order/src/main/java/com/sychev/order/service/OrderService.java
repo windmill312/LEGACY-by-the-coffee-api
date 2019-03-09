@@ -21,4 +21,6 @@ public interface OrderService {
 
     void removeOrder(UUID orderUid);
 
+    void removeAllOrdersByCustomer(UUID customerUid);
+
 }

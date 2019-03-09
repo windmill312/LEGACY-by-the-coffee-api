@@ -16,4 +16,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Integer> {
     List<OrderEntity> findAllByCustomerUid(UUID customerUid);
 
     void deleteByOrderUid(UUID orderUid);
+
+    void deleteAllByCustomerUid(UUID customerUid);
 }

@@ -22,4 +22,6 @@ service OrderServiceV1 {
 
     rpc removeOrder (GRemoveOrderRequest) returns (Empty);
 
+    rpc removeAllOrdersByCustomer (GRemoveAllOrdersByCustomerRequest) returns (Empty);
+
 }

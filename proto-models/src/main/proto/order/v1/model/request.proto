@@ -36,3 +36,8 @@ message GRemoveOrderRequest {
     //GAuthentication authentication = 1;
     GUuid orderUid = 1;
 }
+
+message GRemoveAllOrdersByCustomerRequest {
+    //GAuthentication authentication = 1;
+    GUuid customerUid = 1;
+}

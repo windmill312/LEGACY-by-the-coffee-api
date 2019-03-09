@@ -5,5 +5,5 @@ public enum Service {
     COMMON_AUTH,
     COFFEEHOUSE,
     PRODUCT,
-    TESTS
+    ORDER
 }

@@ -66,4 +66,10 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteByOrderUid(orderUid);
     }
 
+    @Override
+    @Transactional
+    public void removeAllOrdersByCustomer(UUID customerUid) {
+        orderRepository.deleteAllByCustomerUid(customerUid);
+    }
+
 }
