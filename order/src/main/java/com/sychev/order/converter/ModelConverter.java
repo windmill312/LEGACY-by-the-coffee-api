@@ -68,7 +68,6 @@ public class ModelConverter {
 
     public static OrderEntity convert(GOrderInfo entity) {
         return new OrderEntity()
-                .setOrderUid(convert(entity.getOrderUid()))
                 .setCustomerUid(convert(entity.getCustomerUid()))
                 .setCafeUid(convert(entity.getCafeUid()))
                 .setTotalPrice(entity.getPrice())

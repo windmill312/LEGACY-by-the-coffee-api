@@ -32,8 +32,8 @@ public class OrderInfoConverter {
                 CommonConverter.convert(orderInfo.getCafeUid()),
                 CommonConverter.convert(orderInfo.getCustomerUid()),
                 orderInfo.getProductsList().stream()
-                    .map(OrderInfoConverter::convert)
-                    .collect(Collectors.toSet()),
+                        .map(OrderInfoConverter::convert)
+                        .collect(Collectors.toSet()),
                 orderInfo.getPrice(),
                 Instant.ofEpochMilli(orderInfo.getCreateMills()),
                 Instant.ofEpochMilli(orderInfo.getReceiveMills()),
@@ -74,7 +74,7 @@ public class OrderInfoConverter {
                         .setPrice(request.getTotalPrice())
                         .setCreateMills(request.getCreateDttm().toEpochMilli())
                         .setReceiveMills(request.getReceiveDttm().toEpochMilli())
-                    .build())
+                        .build())
                 .build();
     }
 

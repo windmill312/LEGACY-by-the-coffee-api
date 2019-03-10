@@ -91,7 +91,7 @@ public class OrderServiceV1GrpcImpl extends OrderServiceV1Grpc.OrderServiceV1Imp
 
         orderService.updateOrder(
                 ModelConverter.convert(request.getOrder())
-                        .setCafeUid(ModelConverter.convert(request.getOrder().getCafeUid())));
+                        .setOrderUid(ModelConverter.convert(request.getOrder().getOrderUid())));
 
         responseObserver.onNext(Empty.newBuilder().build());
         responseObserver.onCompleted();
@@ -108,4 +108,14 @@ public class OrderServiceV1GrpcImpl extends OrderServiceV1Grpc.OrderServiceV1Imp
         responseObserver.onCompleted();
     }
 
+    @Override
+    public void removeAllOrdersByCustomer(
+            GRemoveAllOrdersByCustomerRequest request,
+            StreamObserver<Empty> responseObserver
+    ) {
+        orderService.removeAllOrdersByCustomer(ModelConverter.convert(request.getCustomerUid()));
+
+        responseObserver.onNext(Empty.newBuilder().build());
+        responseObserver.onCompleted();
+    }
 }

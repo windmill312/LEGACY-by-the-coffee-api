@@ -7,7 +7,6 @@ import com.sychev.gateway.web.to.in.common.OrderStatus;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.HashSet;
@@ -16,11 +15,11 @@ import java.util.UUID;
 
 public class AddOrderRequest {
 
-    @NotBlank
+    @NotNull
     @ApiModelProperty(example = "78a8a5d0-8830-4ce4-9176-6a5d7f3dae34")
     private UUID cafeUid;
 
-    @NotBlank
+    @NotNull
     @ApiModelProperty(example = "56a8a5d0-3830-6cbd-9176-6a5d09fdae34")
     private UUID customerUid;
 

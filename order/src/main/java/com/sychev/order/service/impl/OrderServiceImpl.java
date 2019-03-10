@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public UUID addOrder(OrderEntity entity) {
         logger.debug("Add new order with customer uid={} and cafe uid={}", entity.getCustomerUid(), entity.getCafeUid());
-        return orderRepository.save(entity).getCafeUid();
+        return orderRepository.save(entity).getOrderUid();
     }
 
     @Override
