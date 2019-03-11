@@ -55,7 +55,7 @@ public class ModelConverter {
         return UUID.fromString(guuid.getUuid());
     }
 
-    private static GLocation convert(Double latitude, Double longitude) {
+    public static GLocation convert(Double latitude, Double longitude) {
         return GLocation.newBuilder()
                 .setLatitude(latitude)
                 .setLongitude(longitude)
