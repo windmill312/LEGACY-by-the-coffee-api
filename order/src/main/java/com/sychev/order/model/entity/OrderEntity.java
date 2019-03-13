@@ -114,6 +114,7 @@ public class OrderEntity {
         return this;
     }
 
+    @Enumerated
     @Column(name = "status", nullable = false)
     public OrderStatus getStatus() {
         return status;

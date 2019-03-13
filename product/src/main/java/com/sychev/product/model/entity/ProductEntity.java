@@ -79,6 +79,7 @@ public class ProductEntity {
         return this;
     }
 
+    @Enumerated
     @Column(name = "productGroup", nullable = false)
     public ProductGroup getProductGroup() {
         return productGroup;
